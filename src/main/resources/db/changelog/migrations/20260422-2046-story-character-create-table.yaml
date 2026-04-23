@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20260422-2046-story-character-create-table
+      author: Carlos Torres
+      preConditions:
+        - onFail: MARK_RAN
+        - onFailMessage: "story_character table actually exists"
+        - onError: HALT
+        - not:
+          tableExists:
+            tableName: story_character
+      changes:
+        - createTable:
+            tableName: story_character
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: story_character_id_pk
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    checkConstraint: "name <> ''"
+                    notNullConstraintName: story_character_name_nnull
+                    nullable: false
+              - column:
+                  name: nickname
+                  type: varchar(100)
+                  constraints:
+                    checkConstraint: "nickname <> ''"
+                    nullable: true
+              - column:
+                  name: gender
+                  type: varchar(1)
+                  constraints:
+                    checkConstraint: "gender IN ('M', 'F', 'O')"
+                    notNullConstraintName: story_character_gender_nnull
+                    nullable: false
+              - column:
+                  name: story_role
+                  type: varchar(200)
+                  constraints:
+                    checkConstraint: "story_role <> ''"
+                    notNullConstraintName: story_character_story_role_nnull
+                    nullable: false
+              - column:
+                  name: alignment
+                  type: varchar(100)
+                  constraints:
+                    checkConstraint: "alignment <> ''"
+                    notNullConstraintName: story_character_alignment_nnull
+                    nullable: false
+              - column:
+                  name: general_description
+                  type: varchar(400)
+                  constraints:
+                    checkConstraint: "general_description <> ''"
+                    notNullConstraintName: story_character_general_description_nnull
+                    nullable: false
+              - column:
+                  name: appearance_description
+                  type: varchar(400)
+                  constraints:
+                    checkConstraint: "appearance_description <> ''"
+                    notNullConstraintName: story_character_appearance_description_nnull
+                    nullable: false
+              - column:
+                  name: race
+                  type: varchar(100)
+                  constraints:
+                    checkConstraint: "race <> ''"
+                    notNullConstraintName: story_character_race_nnull
+                    nullable: false
+              - column:
+                  name: birthdate
+                  type: date
+                  constraints:
+                    nullable: true
