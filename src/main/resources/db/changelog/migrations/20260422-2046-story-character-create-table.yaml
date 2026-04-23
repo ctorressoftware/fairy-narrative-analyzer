@@ -7,7 +7,7 @@ databaseChangeLog:
         - onFailMessage: "story_character table actually exists"
         - onError: HALT
         - not:
-          tableExists:
+          - tableExists:
             tableName: story_character
       changes:
         - createTable:
