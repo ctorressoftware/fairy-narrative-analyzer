@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: migrations/20260422-2046-story-character-create-table.yaml
+      relativeToChangelogFile: true
